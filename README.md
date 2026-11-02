@@ -12,6 +12,7 @@ To switch backends, change one base URL.
 ![JavaScript](https://img.shields.io/badge/MERN-Mongo%20%7C%20Express%20%7C%20React%20%7C%20Node-339933?logo=nodedotjs&logoColor=white)
 ![Flutter](https://img.shields.io/badge/Flutter-Dart-02569B?logo=flutter&logoColor=white)
 ![Swift](https://img.shields.io/badge/Swift-SwiftUI-F05138?logo=swift&logoColor=white)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
@@ -283,4 +284,8 @@ Each folder has its own `README.md` with more details.
 
 ## Author
 
-**Venkata Sai Vardhan Thimmisetty**
+**Venkata Sai Vardhan Thimmisetty** · [@sai2408](https://github.com/sai2408)
+
+## License
+
+Released under the [MIT License](LICENSE).
