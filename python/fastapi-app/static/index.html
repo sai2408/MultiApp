@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tasks · FastAPI</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 560px; margin: 40px auto; padding: 0 16px; color: #222; }
+    h1 small { font-size: .5em; color: #888; font-weight: normal; }
+    form { display: flex; gap: 8px; margin-bottom: 20px; }
+    form input { flex: 1; padding: 8px; }
+    ul { list-style: none; padding: 0; }
+    li { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px solid #eee; }
+    li span { flex: 1; }
+    li.done span { text-decoration: line-through; color: #999; }
+    button { cursor: pointer; padding: 6px 10px; }
+  </style>
+</head>
+<body>
+  <h1>Tasks <small>FastAPI</small></h1>
+
+  <form id="add">
+    <input id="title" placeholder="What needs doing?" required autofocus>
+    <button type="submit">Add</button>
+  </form>
+
+  <ul id="list"></ul>
+  <p><a href="/docs">Interactive API docs →</a></p>
+
+  <script>
+    const API = "/api/tasks";
+    const list = document.getElementById("list");
+
+    async function load() {
+      const tasks = await (await fetch(API)).json();
+      list.replaceChildren(...tasks.map(render));
+      if (!tasks.length) list.innerHTML = "<li><em>No tasks yet.</em></li>";
+    }
+
+    function render(t) {
+      const li = document.createElement("li");
+      if (t.done) li.className = "done";
+
+      const toggle = document.createElement("button");
+      toggle.textContent = t.done ? "↺" : "✓";
+      toggle.onclick = async () => {
+        await fetch(`${API}/${t.id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ done: !t.done }),
+        });
+        load();
+      };
+
+      const title = document.createElement("span");
+      title.textContent = t.title;
+
+      const del = document.createElement("button");
+      del.textContent = "Delete";
+      del.onclick = async () => {
+        await fetch(`${API}/${t.id}`, { method: "DELETE" });
+        load();
+      };
+
+      li.append(toggle, title, del);
+      return li;
+    }
+
+    document.getElementById("add").onsubmit = async (e) => {
+      e.preventDefault();
+      const input = document.getElementById("title");
+      await fetch(API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: input.value }),
+      });
+      input.value = "";
+      load();
+    };
+
+    load();
+  </script>
+</body>
+</html>

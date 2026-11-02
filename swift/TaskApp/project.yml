@@ -1,0 +1,23 @@
+# XcodeGen spec: run `xcodegen generate` in this folder to create TaskApp.xcodeproj
+name: TaskApp
+options:
+  bundleIdPrefix: com.multiapp
+  deploymentTarget:
+    iOS: "17.0"
+targets:
+  TaskApp:
+    type: application
+    platform: iOS
+    sources: [TaskApp]
+    info:
+      path: TaskApp/Info.plist
+      properties:
+        UILaunchScreen: {}
+        CFBundleDisplayName: Tasks
+        # Allow plain http:// to local dev backends
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.multiapp.TaskApp
+        SWIFT_VERSION: "5.0"

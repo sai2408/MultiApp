@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.db
+
+# Java / Kotlin
+target/
+build/
+.gradle/
+data/
+*.iml
+.idea/
+.kotlin/
+local.properties
+hs_err_pid*.log
+replay_pid*.log
+
+# Node
+node_modules/
+dist/
+.env
+
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+flutter/task_app/android/
+flutter/task_app/ios/
+flutter/task_app/web/
+flutter/task_app/windows/
+flutter/task_app/linux/
+flutter/task_app/macos/
+
+# Xcode
+*.xcodeproj/
+xcuserdata/
+DerivedData/
+
+# OS
+.DS_Store
+Thumbs.db

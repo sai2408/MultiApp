@@ -1,0 +1,12 @@
+* text=auto
+
+# Unix wrapper scripts must keep LF to run on macOS/Linux
+mvnw text eol=lf
+gradlew text eol=lf
+*.sh text eol=lf
+
+# Windows scripts
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+*.jar binary
